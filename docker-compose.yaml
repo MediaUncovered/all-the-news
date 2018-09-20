@@ -1,0 +1,13 @@
+version: '2'
+services:
+
+  storage:
+    image: postgres:9.6.3
+    environment:
+      - POSTGRES_USER=mysecretuser
+      - POSTGRES_DB=media_uncovered
+      - POSTGRES_PASSWORD=mysecretpassword
+    volumes:
+      - ../data/storage:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
