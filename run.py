@@ -1,3 +1,4 @@
+import sys
 import csv
 from dateutil.parser import parse
 import all_the_news.model as model
