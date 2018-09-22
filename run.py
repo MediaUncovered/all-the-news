@@ -15,14 +15,19 @@ def insert_source(session, name):
 
 def loop_through_data(session, reader):
     for row in reader:
+        try:
+            publication_date = parse(row["date"])
+        except ValueError as e:
+            print("could not parse date, skipping: %s - %s" % (row["publication"], row["title"]))
+            continue
+
         article = model.Article(
             url=row["url"],
             title=row["title"],
             body=row["content"],
-            published=parse(row["date"]),
+            published=publication_date,
             html=None,
         )
-
 
         publication = row["publication"]
 
